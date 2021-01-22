@@ -11,21 +11,44 @@
     />
   </head>
   <body>
-    <div class="search-container">
-      <!-- <input
+    <h1>Stock Market Profit or Loss</h1>
+    <!-- <div class="search-container">
+      <input
         id="search"
+        class="input"
         type="text"
         placeholder="Enter stock to search"
         autocomplete="off"
-      /> -->
-      <!-- <button id="btnsearch"><i class="ri-search-line"></i></button> -->
-      <select name="stock" id="stock">
-        <option value="TCS">TCS</option>
-        <option value="TCS">ITC</option>
-      </select>
-    </div>
+      />
+      <button id="btnsearch"><i class="ri-search-line"></i></button>
+    </div> -->
+    <select class="input" id="stock">
+      <option value="" selected disabled hidden>Choose here</option>
+      <option value="TCS">TCS</option>
+      <option value="ITC">ITC</option>
+    </select>
+    <input
+      class="input"
+      id="number"
+      type="text"
+      placeholder="Enter number of Stocks"
+      autocomplete="off"
+    />
+    <input
+      class="input"
+      type="date"
+      id="datePicker"
+      placeholder="Enter number of Stocks"
+      autocomplete="off"
+    />
 
-    <div id="result">
+    <button id="calculate" class="btn" hidden>Calculate</button>
+    <button id="clear" class="btn clear" hidden>Clear</button>
+
+    <!-- <div id="result"></div> -->
+    <div class="output">
+      <div class="error"></div>
+      <div class="result-data"></div>
     </div>
 
     <script src="script.js"></script>
