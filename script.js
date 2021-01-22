@@ -68,12 +68,10 @@ const getStockData2 = async () => {
 
   valueThatDay = stocks["Time Series (Daily)"][`${dateOfPurchase}`]["4. close"];
 
-  if(valueThatDay){
-    calculate.hidden = false
-    clear.hidden = false
-  } else{
-    setErrorStatement("Sorry value for that day is not available.")
-  }
+  // if(valueThatDay){
+  //   calculate.style.backgroundColor = "#3498db";
+  //   calculate.disabled = false;
+  // } 
   console.log(valueThatDay);
 };
 
@@ -110,22 +108,22 @@ calculate.addEventListener("click", function(){
   } else {
     setErrorStatement("")
   }
-  if(!noOfStock){
-    setErrorStatement("Enter the number of stocks")
-  } else {
-    if (isNaN(noOfStock)) {
-      number.value = "";
-      setErrorStatement("Only number input allowed for number of stock");
-    } else {
-      setErrorStatement("");
-    }
-  }
   if(!dateOfPurchase){
     setErrorStatement("Enter date of purchase for stock")
   } else {
     setErrorStatement("")
   }
-  if(valueToday && valueThatDay && noOfStock){
+  if (!noOfStock) {
+    setErrorStatement("Enter the number of stocks");
+  } else {
+    if (isNaN(noOfStock)) {
+      console.log(isNaN(noOfStock));
+      setErrorStatement("Only number input allowed for number of stock");
+    } else {
+      setErrorStatement("");
+    }
+  }
+  if (valueToday && valueThatDay && Number(noOfStock)) {
     let totalTodayValue = valueToday * noOfStock;
     let totalPastValue = valueThatDay * noOfStock;
     let diff = totalTodayValue - totalPastValue;
@@ -136,7 +134,11 @@ calculate.addEventListener("click", function(){
       <h3>Value per stock today: ${valueToday}</h3>
       <h3>Amount spent when purchased: ${totalPastValue}</h3>
       <h3>Total value of stocks today: ${totalTodayValue}</h3>
-      ${diff > 0 ? `<h3 class="profit">Profit :  ${diff}</h3>` : `<h3 class="loss">Loss : ${-diff}</h3>`}
+      ${
+        diff > 0
+          ? `<h3 class="profit">Profit :  ${diff}</h3>`
+          : `<h3 class="loss">Loss : ${-diff}</h3>`
+      }
     `;
   }
 })
@@ -145,6 +147,10 @@ clear.addEventListener("click", function(){
   dropDownStock.value = ""
   number.value = ""
   datePicker.value = ""
+  valueThatDay = undefined;
+  valueToday = undefined;
+  noOfStock = undefined;
+  setErrorStatement("")
 })
 
 function setErrorStatement(statement){
