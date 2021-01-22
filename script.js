@@ -68,10 +68,10 @@ const getStockData2 = async () => {
 
   valueThatDay = stocks["Time Series (Daily)"][`${dateOfPurchase}`]["4. close"];
 
-  // if(valueThatDay){
-  //   calculate.style.backgroundColor = "#3498db";
-  //   calculate.disabled = false;
-  // } 
+  if(valueThatDay){
+    calculate.style.backgroundColor = "#3498db";
+    calculate.disabled = false;
+  } 
   console.log(valueThatDay);
 };
 
